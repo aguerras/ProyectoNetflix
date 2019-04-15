@@ -6,3 +6,12 @@ C:\Users\Kevin Guerra\source\repos\EstructuraDeDatos\EstructuraDeDatos\obj\Debug
 C:\Users\Kevin Guerra\source\repos\EstructuraDeDatos\EstructuraDeDatos\obj\Debug\netstandard1.4\EstructuraDeDatos.AssemblyInfo.cs
 C:\Users\Kevin Guerra\source\repos\EstructuraDeDatos\EstructuraDeDatos\obj\Debug\netstandard1.4\EstructuraDeDatos.dll
 C:\Users\Kevin Guerra\source\repos\EstructuraDeDatos\EstructuraDeDatos\obj\Debug\netstandard1.4\EstructuraDeDatos.pdb
+C:\Users\Kevin Guerra\Source\Repos\aguerras\ProyectoNetflix\EstructuraDeDatos\EstructuraDeDatos\bin\Debug\netstandard1.4\EstructuraDeDatos.deps.json
+C:\Users\Kevin Guerra\Source\Repos\aguerras\ProyectoNetflix\EstructuraDeDatos\EstructuraDeDatos\bin\Debug\netstandard1.4\EstructuraDeDatos.dll
+C:\Users\Kevin Guerra\Source\Repos\aguerras\ProyectoNetflix\EstructuraDeDatos\EstructuraDeDatos\bin\Debug\netstandard1.4\EstructuraDeDatos.pdb
+C:\Users\Kevin Guerra\Source\Repos\aguerras\ProyectoNetflix\EstructuraDeDatos\EstructuraDeDatos\obj\Debug\netstandard1.4\EstructuraDeDatos.csproj.CoreCompileInputs.cache
+C:\Users\Kevin Guerra\Source\Repos\aguerras\ProyectoNetflix\EstructuraDeDatos\EstructuraDeDatos\obj\Debug\netstandard1.4\EstructuraDeDatos.AssemblyInfoInputs.cache
+C:\Users\Kevin Guerra\Source\Repos\aguerras\ProyectoNetflix\EstructuraDeDatos\EstructuraDeDatos\obj\Debug\netstandard1.4\EstructuraDeDatos.AssemblyInfo.cs
+C:\Users\Kevin Guerra\Source\Repos\aguerras\ProyectoNetflix\EstructuraDeDatos\EstructuraDeDatos\obj\Debug\netstandard1.4\EstructuraDeDatos.dll
+C:\Users\Kevin Guerra\Source\Repos\aguerras\ProyectoNetflix\EstructuraDeDatos\EstructuraDeDatos\obj\Debug\netstandard1.4\EstructuraDeDatos.pdb
+C:\Users\Kevin Guerra\source\repos\aguerras\ProyectoNetflix\EstructuraDeDatos\EstructuraDeDatos\obj\Debug\netstandard1.4\EstructuraDeDatos.csprojAssemblyReference.cache

@@ -6,17 +6,20 @@ namespace EstructuraDeDatos
     {
         private Object valor;
         private Nodo enlaceSiguiente;
+        private Nodo enlaceAnterior;
 
         public Nodo()
         {
             valor = null;
             enlaceSiguiente = null;
+            enlaceAnterior = null;
         }
 
         public Nodo(Object valor)
         {
             this.valor = valor;
             this.enlaceSiguiente = null;
+            this.enlaceAnterior = null;
         }
 
         public Object getValor()
@@ -37,6 +40,16 @@ namespace EstructuraDeDatos
         public void setEnlaceSiguiente(Nodo enlaceSiguiente)
         {
             this.enlaceSiguiente = enlaceSiguiente;
+        }
+
+        public Nodo getEnlaceAnterior()
+        {
+            return this.enlaceAnterior;
+        }
+
+        public void setEnlaceAnterior(Nodo enlaceAnterior)
+        {
+            this.enlaceAnterior = enlaceAnterior;
         }
     }
 
@@ -84,6 +97,69 @@ namespace EstructuraDeDatos
         public void next()
         {
             actual = actual.getEnlaceSiguiente();
+        }
+    }
+
+    public class LinkedListDouble
+    {
+        private Nodo primero;
+        private Nodo actual;
+        private Nodo ultimo;
+
+        public LinkedListDouble()
+        {
+            primero = null;
+            actual = null;
+            ultimo = null;
+        }
+
+        public void insertar(Object dato)
+        {
+            Nodo nodo = new Nodo(dato);
+            if (primero == null)
+            {
+                primero = nodo;
+                actual = nodo;
+                ultimo = nodo;
+            }
+            else
+            {
+                ultimo.setEnlaceSiguiente(nodo);
+                Nodo nodoTemporal = ultimo;
+                ultimo = nodo;
+                ultimo.setEnlaceAnterior(nodoTemporal);
+            }
+        }
+
+        public Object getActual()
+        {
+            if (actual != null) {
+                return actual.getValor();
+            } else
+            {
+                return null;
+            }
+        }
+        public Object getEnlaceActual()
+        {
+            return actual.getEnlaceSiguiente();
+        }   
+        public Object getUltimo()
+        {
+            return ultimo.getValor();
+        }
+        public void next()
+        {
+            if (actual.getEnlaceSiguiente() != null) {
+                actual = actual.getEnlaceSiguiente();
+            } else
+            {
+                actual = null;
+            }
+        }
+        public void iniciarPrimero()
+        {
+            actual = primero;
         }
     }
 
