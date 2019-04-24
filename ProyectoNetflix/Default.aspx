@@ -35,6 +35,28 @@
         <div class="right-element" style="top: 800px;">
             <a class="next">❯</a>
         </div>
+
+        <h1 id="home">Continuar Viendo</h1>
+        <div class="left-element" style="top: 800px;">
+            <a class="prev">❮</a>
+        </div>
+        <div class="owl-carousel owl-theme">
+            <%= strWatchLater %>
+        </div>
+        <div class="right-element" style="top: 800px;">
+            <a class="next">❯</a>
+        </div>
+
+        <h1 id="home">Mi Lista</h1>
+        <div class="left-element" style="top: 800px;">
+            <a class="prev">❮</a>
+        </div>
+        <div class="owl-carousel owl-theme">
+            <%= strMyList %>
+        </div>
+        <div class="right-element" style="top: 800px;">
+            <a class="next">❯</a>
+        </div>
     </div>
 
     <style>

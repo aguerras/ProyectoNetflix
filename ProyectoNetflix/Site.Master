@@ -22,12 +22,18 @@
             <a id="logo" href="#home"><img src="https://github.com/carlosavilae/Netflix-Clone/blob/master/img/logo.PNG?raw=true" alt="Logo Image"></a>
         </div>      
         <nav class="main-nav">                
-            <a href="/">Home</a>    
+            <a href="/">Home</a>
         </nav>
         <nav class="sub-nav">
             <a href="#"><i class="fas fa-search sub-nav-logo"></i></a>
             <a href="#"><i class="fas fa-bell sub-nav-logo"></i></a>
         </nav>
+        <%--CSS--%>
+        <link id="css1" runat="server" href="../css/style.css" rel="stylesheet" type="text/css" />
+        <link id="css2" runat="server" href="../css/owl.carousel.min.css" rel="stylesheet" type="text/css" />
+        <link id="css3" runat="server" href="../css/owl.theme.default.min.css" rel="stylesheet" type="text/css" />
+        <link id="css4" runat="server" href="../css/title.css" rel="stylesheet" type="text/css" />
+        <%--CSS--%>
     </header>
 
 
@@ -49,11 +55,7 @@
             </Scripts>
         </asp:ScriptManager>
 
-        <%--CSS--%>
-        <link href="css/style.css" rel="stylesheet" />
-        <link rel="stylesheet" href="css/owl.carousel.min.css">
-        <link rel="stylesheet" href="css/owl.theme.default.min.css">
-        <%--CSS--%>
+        
 
         <script src="Scripts/owl.carousel.min.js"></script>
         
