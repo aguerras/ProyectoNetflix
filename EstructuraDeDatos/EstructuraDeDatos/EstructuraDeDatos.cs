@@ -196,7 +196,14 @@ namespace EstructuraDeDatos
 
         public Object getPrimero()
         {
-            return primero.getValor();
+            if (primero != null)
+            {
+                return primero.getValor();
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 
@@ -223,7 +230,14 @@ namespace EstructuraDeDatos
         }
         public Object getPrimero()
         {
-            return primero.getValor();
+            if (primero != null)
+            {
+                return primero.getValor();
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }
