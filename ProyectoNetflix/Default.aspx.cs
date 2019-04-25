@@ -13,46 +13,58 @@ namespace ProyectoNetflix
 {
     public partial class _Default : Page
     {
-        public LinkedListDouble movies = new LinkedListDouble();
-        public Pila watchLater = new Pila();
-        public Cola myList = new Cola();
         public String tvForChildren, drama, actionNAdventure, strWatchLater, strMyList;
         public void LoadMovies()
         {
-            movies.insertar(new Movie("Coraje el perro cobarde", "Images/Coraje.jpg", "TV para niños", ""));
-            movies.insertar(new Movie("Bob esponja", "Images/bob_esponja.jpg", "TV para niños", ""));
-            movies.insertar(new Movie("Los padrinos mágicos", "Images/padrinos_magicos.png", "TV para niños", ""));
-            movies.insertar(new Movie("Scooby doo", "Images/scooby_doo.jpg", "TV para niños", ""));
-            movies.insertar(new Movie("Tom y Jerry", "Images/tom_and_jerry.jpg", "TV para niños", ""));
-            movies.insertar(new Movie("Billy y Mandy", "Images/billy_y_mandy.jpg", "TV para niños", ""));
-            movies.insertar(new Movie("Toy Story", "Images/toy_story.jpg", "TV para niños", ""));
-            movies.insertar(new Movie("WALL - E", "Images/walle.jpg", "TV para niños", ""));
+            if (Session["movies"] == null)
+            {
+                LinkedListDouble movies = new LinkedListDouble();
+                movies.insertar(new Movie("Coraje el perro cobarde", "Images/Coraje.jpg", "TV para niños", ""));
+                movies.insertar(new Movie("Bob esponja", "Images/bob_esponja.jpg", "TV para niños", ""));
+                movies.insertar(new Movie("Los padrinos mágicos", "Images/padrinos_magicos.png", "TV para niños", ""));
+                movies.insertar(new Movie("Scooby doo", "Images/scooby_doo.jpg", "TV para niños", ""));
+                movies.insertar(new Movie("Tom y Jerry", "Images/tom_and_jerry.jpg", "TV para niños", ""));
+                movies.insertar(new Movie("Billy y Mandy", "Images/billy_y_mandy.jpg", "TV para niños", ""));
+                movies.insertar(new Movie("Toy Story", "Images/toy_story.jpg", "TV para niños", ""));
+                movies.insertar(new Movie("WALL - E", "Images/walle.jpg", "TV para niños", ""));
 
-            movies.insertar(new Movie("Titanic", "Images/titanic.jpg", "Drama", ""));
-            movies.insertar(new Movie("El padrino", "Images/el_padrino.png", "Drama", ""));
-            movies.insertar(new Movie("Milagros inesperados", "Images/milagros_inesperados.jpg", "Drama", ""));
+                movies.insertar(new Movie("Titanic", "Images/titanic.jpg", "Drama", ""));
+                movies.insertar(new Movie("El padrino", "Images/el_padrino.png", "Drama", ""));
+                movies.insertar(new Movie("Milagros inesperados", "Images/milagros_inesperados.jpg", "Drama", ""));
 
-            movies.insertar(new Movie("Star Wars", "Images/star_wars.jpg", "Acción y Aventuras", ""));
-            movies.insertar(new Movie("Jurassic Park", "Images/jurassic_park.jpg", "Acción y Aventura", ""));
-            movies.insertar(new Movie("Inidiana Jones", "Images/indiana_jones.jpg", "Acción y Aventura", ""));
-            movies.insertar(new Movie("Piratas del Caribe:  La maldición del Perla Negra", "Images/piratas_del_caribe.jpg", "Acción y Aventura", ""));
-            movies.insertar(new Movie("La momia", "Images/la_momia.jpg", "Acción y Aventura", ""));
+                movies.insertar(new Movie("Star Wars", "Images/star_wars.jpg", "Acción y Aventuras", ""));
+                movies.insertar(new Movie("Jurassic Park", "Images/jurassic_park.jpg", "Acción y Aventura", ""));
+                movies.insertar(new Movie("Inidiana Jones", "Images/indiana_jones.jpg", "Acción y Aventura", ""));
+                movies.insertar(new Movie("Piratas del Caribe:  La maldición del Perla Negra", "Images/piratas_del_caribe.jpg", "Acción y Aventura", ""));
+                movies.insertar(new Movie("La momia", "Images/la_momia.jpg", "Acción y Aventura", ""));
 
-            //Request.QueryString.Set("peliculas") = movies;
+                Session["movies"] = movies;
+            }
 
-            //Continuar viendo
-            watchLater.push(new Movie("Coraje el perro cobarde", "Images/Coraje.jpg", "Continuar viendo", ""));
+            if (Session["watchLater"] == null)
+            {
+                //Continuar viendo
+                Pila watchLater = new Pila();
+                watchLater.push(new Movie("Coraje el perro cobarde", "Images/Coraje.jpg", "Continuar viendo", ""));
+                Session["watchLater"] = watchLater;
+            }
 
-            //Mi lista
-            myList.push(new Movie("Coraje el perro cobarde", "Images/Coraje.jpg", "Mi lista", ""));
-
-            esribirSesion();
+            if (Session["myList"] == null)
+            {
+                //Mi lista
+                Cola myList = new Cola();
+                myList.push(new Movie("Coraje el perro cobarde", "Images/Coraje.jpg", "Mi lista", ""));
+                Session["myList"] = myList;
+            }
         }
 
         protected void Page_Load(object sender, EventArgs e)
         {
             LoadMovies();
             Movie movie;
+            LinkedListDouble movies = (LinkedListDouble)Session["movies"];
+            Pila watchLater = (Pila)Session["watchLater"];
+            Cola myList = (Cola)Session["myList"];
             movies.iniciarPrimero();
             while (movies.getActual() != null)
             {
@@ -112,19 +124,6 @@ namespace ProyectoNetflix
                 strMyList += "<div class='item'><a href='Views/Title.aspx?name=" + movieName + "&category=" + movie.Category + "'><img src='" + movie.Picture + "' width='280' height='150' /></a><span title='" + movie.Name + "'><center><b>" + movieName + "</b></center></span></div>";
                 myListMovies.pop();
             }
-        }
-
-        protected void esribirSesion()
-        {
-            //HttpCookie Datos = new HttpCookie("Datos");
-            //Datos.Values.Add("movies", movies);
-            //Datos.Values.Add("watchLater", watchLater);
-            //Datos.Values.Add("myList", myList);
-            //Response.Cookies.Add(Datos);
-
-            Session["movies"] = movies;
-            Session["watchLater"] = watchLater;
-            Session["myList"] = myList;
         }
     }
 }
