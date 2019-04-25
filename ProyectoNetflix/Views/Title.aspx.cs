@@ -12,6 +12,8 @@ namespace ProyectoNetflix.Views
     public partial class Title : System.Web.UI.Page
     {
         public LinkedListDouble movies = new LinkedListDouble();
+        public Pila watchLater = new Pila();
+        public Cola myList = new Cola();
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -23,34 +25,65 @@ namespace ProyectoNetflix.Views
             {
                 try
                 {
-                    String name = Request.QueryString["name"];
+                    Movie movie = getMovieActual();
+                    lbl_category.Text = movie.Category;
+                    lbl_title.Text = movie.Name;
+                    lbl_description.Text = movie.Description;
+                    img_movie.ImageUrl = "../" + movie.Picture;
+                }
+                catch (Exception)
+                {
 
-                    if (name.Length > 0)
+                }
+            }
+        }
+
+        protected Movie getMovieActual()
+        {
+            String name = Request.QueryString["name"];
+            try
+            {
+                movies = (LinkedListDouble)Session["movies"];
+                watchLater = (Pila)Session["watchLater"];
+                myList = (Cola)Session["myList"];
+            }
+            catch (Exception)
+            {
+
+            }
+            if (name.Length > 0)
+            {
+                try
+                {
+                    movies.iniciarPrimero();
+                    while (movies.getActual() != null)
                     {
-                        movies = (LinkedListDouble)Session["movies"];
-                        movies.iniciarPrimero();
-                        while (movies.getActual() != null)
+                        Movie movie;
+                        movie = (Movie)movies.getActual();
+
+                        String movieName = movie.Name;
+                        if (movieName == name)
                         {
-                            Movie movie;
-                            movie = (Movie)movies.getActual();
-                            lbl_category.Text = movie.Category;
-                            lbl_title.Text = movie.Name;
-                            lbl_description.Text = movie.Description;
-                            img_movie.ImageUrl = "../" + movie.Picture;
-                            String movieName = movie.Name;
-                            if (movieName == name)
-                            {
-                                return;
-                            }
-                            movies.next();
+                            return movie;
                         }
+                        movies.next();
                     }
                 }
                 catch (Exception)
                 {
 
-                    //throw;
                 }
+            }
+            
+            return null;
+        }
+
+        protected void btn_add_Click(object sender, EventArgs e)
+        {
+            Movie movie = getMovieActual();
+            if (movie != null)
+            {
+                myList.push(movies.getActual());
             }
         }
     }
