@@ -178,12 +178,12 @@ namespace EstructuraDeDatos
     public class Cola
     {
         private Nodo primero;
-        private Nodo actual;
+        private Nodo ultimo;
 
         public Cola()
         {
             primero = null;
-            actual = null;
+            ultimo = null;
         }
 
         public Cola Clone()
@@ -204,18 +204,26 @@ namespace EstructuraDeDatos
             if (primero == null)
             {
                 primero = nodo;
-                actual = primero;
+                
             } else
             {
-                actual.setEnlaceSiguiente(nodo);
-                actual = nodo;
+                ultimo.setEnlaceSiguiente(nodo);
             }
-            
+            ultimo = nodo;
         }
         public Object pop()
         {
-            primero = primero.getEnlaceSiguiente();
-            return primero;
+            Object objectCola;
+            if (primero != null)
+            {
+                objectCola = primero.getValor();
+                primero = primero.getEnlaceSiguiente();
+            }
+            else
+            {
+                throw new Exception("Error al eliminar en una cola vacia");
+            }
+            return objectCola;
         }
 
         public Object getPrimero()
@@ -227,6 +235,14 @@ namespace EstructuraDeDatos
             else
             {
                 return null;
+            }
+        }
+
+        public void borrarCola()
+        {
+            for (; primero != null;)
+            {
+                primero = primero.getEnlaceSiguiente();
             }
         }
     }
@@ -254,8 +270,9 @@ namespace EstructuraDeDatos
 
         public Object pop()
         {
+            Object aux = primero.getValor();
             primero = primero.getEnlaceSiguiente();
-            return primero;
+            return aux;
         }
 
         public void push(Object valor)
