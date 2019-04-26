@@ -1,4 +1,7 @@
-﻿.video-page {
+﻿@import url('google.css');
+@import url('all.css');
+
+.video-page {
     width: 100%;
     margin: auto;
     min-height: 100vh;
@@ -66,6 +69,11 @@
 
                     .video-page .video-page-header .video-description .header-left .my-list i {
                         margin-right: 10px;
+                    }
+
+                    .video-page .video-page-header .video-description .header-left .my-list input {
+                        background: none;
+                        border: none;
                     }
 
             .video-page .video-page-header .video-description .header-right {
