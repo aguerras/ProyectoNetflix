@@ -40,22 +40,6 @@ namespace ProyectoNetflix
 
                 Session["movies"] = movies;
             }
-
-            if (Session["watchLater"] == null)
-            {
-                //Continuar viendo
-                Pila watchLater = new Pila();
-                watchLater.push(new Movie("Coraje el perro cobarde", "Images/Coraje.jpg", "Continuar viendo", ""));
-                Session["watchLater"] = watchLater;
-            }
-
-            if (Session["myList"] == null)
-            {
-                //Mi lista
-                Cola myList = new Cola();
-                myList.push(new Movie("Coraje el perro cobarde", "Images/Coraje.jpg", "Mi lista", ""));
-                Session["myList"] = myList;
-            }
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -75,7 +59,7 @@ namespace ProyectoNetflix
                     {
                         movieName = movieName.Substring(0, 33) + "...";
                     }
-                    tvForChildren += "<div class='item'><a href='Views/Title.aspx?name=" + movieName + "&category=" + movie.Category  + "'><img src='" + movie.Picture + "' width='280' height='150' /></a><span title='"+ movie.Name + "'><center><b>"+ movieName + "</b></center></span></div>";
+                    tvForChildren += "<div class='item'><a href='Views/Title.aspx?name=" + movieName + "&category=" + movie.Category  + "&boton=0'><img src='" + movie.Picture + "' width='280' height='150' /></a><span title='"+ movie.Name + "'><center><b>"+ movieName + "</b></center></span></div>";
                 } else if (movie.Category == "Drama")
                 {
                     String movieName = movie.Name;
@@ -83,7 +67,7 @@ namespace ProyectoNetflix
                     {
                         movieName = movieName.Substring(0, 33) + "...";
                     }
-                    drama += "<div class='item'><a href='Views/Title.aspx?name=" + movieName + "&category=" + movie.Category + "'><img src='" + movie.Picture + "' width='280' height='150' /></a><span title='" + movie.Name + "'><center><b>" + movieName + "</b></center></span></div>";
+                    drama += "<div class='item'><a href='Views/Title.aspx?name=" + movieName + "&category=" + movie.Category + "&boton=0'><img src='" + movie.Picture + "' width='280' height='150' /></a><span title='" + movie.Name + "'><center><b>" + movieName + "</b></center></span></div>";
                 } else if (movie.Category == "Acción y Aventura")
                 {
                     String movieName = movie.Name;
@@ -91,38 +75,55 @@ namespace ProyectoNetflix
                     {
                         movieName = movieName.Substring(0, 33) + "...";
                     }
-                    actionNAdventure += "<div class='item'><a href='Views/Title.aspx?name=" + movieName + "&category=" + movie.Category + "'><img src='" + movie.Picture + "' width='280' height='150' /></a><span title='" + movie.Name + "'><center><b>" + movieName + "</b></center></span></div>";
+                    actionNAdventure += "<div class='item'><a href='Views/Title.aspx?name=" + movieName + "&category=" + movie.Category + "&boton=0'><img src='" + movie.Picture + "' width='280' height='150' /></a><span title='" + movie.Name + "'><center><b>" + movieName + "</b></center></span></div>";
                 }
                 movies.next();
             }
 
 
             //Mostrar peliculas de Continuar viendo
-            Pila watchLaterMovies = watchLater.Clone();
-            while (watchLaterMovies.getPrimero() != null)
+            try
             {
-                movie = (Movie)watchLaterMovies.getPrimero();
-                String movieName = movie.Name;
-                if (movieName.Length > 32)
+                Pila watchLaterMovies = watchLater.Clone();
+                while (watchLaterMovies.getPrimero() != null)
                 {
-                    movieName = movieName.Substring(0, 33) + "...";
+                    movie = (Movie)watchLaterMovies.getPrimero();
+                    String movieName = movie.Name;
+                    if (movieName.Length > 32)
+                    {
+                        movieName = movieName.Substring(0, 33) + "...";
+                    }
+                    strWatchLater += "<div class='item'><a href='Views/Title.aspx?name=" + movieName + "&category=" + movie.Category + "&boton=0'><img src='" + movie.Picture + "' width='280' height='150' /></a><span title='" + movie.Name + "'><center><b>" + movieName + "</b></center></span></div>";
+                    watchLaterMovies.pop();
                 }
-                strWatchLater += "<div class='item'><a href='Views/Title.aspx?name=" + movieName + "&category=" + movie.Category + "'><img src='" + movie.Picture + "' width='280' height='150' /></a><span title='" + movie.Name + "'><center><b>" + movieName + "</b></center></span></div>";
-                watchLaterMovies.pop();
+            }
+            catch (Exception)
+            {
+
+                
             }
 
+
             //Mostrar Peliculas de Mi lista
-            Cola myListMovies = myList.Clone();
-            while (myListMovies.getPrimero() != null)
+            try
             {
-                movie = (Movie)myListMovies.getPrimero();
-                String movieName = movie.Name;
-                if (movieName.Length > 32)
+                Cola myListMovies = myList.Clone();
+                while (myListMovies.getPrimero() != null)
                 {
-                    movieName = movieName.Substring(0, 33) + "...";
+                    movie = (Movie)myListMovies.getPrimero();
+                    String movieName = movie.Name;
+                    if (movieName.Length > 32)
+                    {
+                        movieName = movieName.Substring(0, 33) + "...";
+                    }
+                    strMyList += "<div class='item'><a href='Views/Title.aspx?name=" + movieName + "&category=" + movie.Category + "'&boton=0><img src='" + movie.Picture + "' width='280' height='150' /></a><span title='" + movie.Name + "'><center><b>" + movieName + "</b></center></span></div>";
+                    myListMovies.pop();
                 }
-                strMyList += "<div class='item'><a href='Views/Title.aspx?name=" + movieName + "&category=" + movie.Category + "'><img src='" + movie.Picture + "' width='280' height='150' /></a><span title='" + movie.Name + "'><center><b>" + movieName + "</b></center></span></div>";
-                myListMovies.pop();
+            }
+            catch (Exception)
+            {
+
+                
             }
         }
     }
