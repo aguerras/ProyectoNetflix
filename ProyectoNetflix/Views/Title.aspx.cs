@@ -84,6 +84,7 @@ namespace ProyectoNetflix.Views
             if (movie != null)
             {
                 myList.push(movies.getActual());
+                Session["myList"] = myList;
             }
         }
     }

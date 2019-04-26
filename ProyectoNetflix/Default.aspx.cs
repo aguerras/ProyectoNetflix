@@ -98,7 +98,7 @@ namespace ProyectoNetflix
 
 
             //Mostrar peliculas de Continuar viendo
-            Pila watchLaterMovies = watchLater;
+            Pila watchLaterMovies = watchLater.Clone();
             while (watchLaterMovies.getPrimero() != null)
             {
                 movie = (Movie)watchLaterMovies.getPrimero();
@@ -112,7 +112,7 @@ namespace ProyectoNetflix
             }
 
             //Mostrar Peliculas de Mi lista
-            Cola myListMovies = myList;
+            Cola myListMovies = myList.Clone();
             while (myListMovies.getPrimero() != null)
             {
                 movie = (Movie)myListMovies.getPrimero();
