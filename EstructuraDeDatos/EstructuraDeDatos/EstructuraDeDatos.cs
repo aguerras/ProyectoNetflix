@@ -113,6 +113,18 @@ namespace EstructuraDeDatos
             ultimo = null;
         }
 
+        public LinkedListDouble Clone()
+        {
+            LinkedListDouble newList = new LinkedListDouble();
+            Nodo actualList = primero;
+            while (actualList != null)
+            {
+                newList.insertar(actualList.getValor());
+                actualList = actualList.getEnlaceSiguiente();
+            }
+            return newList;
+        }
+
         public void insertar(Object dato)
         {
             Nodo nodo = new Nodo(dato);
@@ -174,6 +186,18 @@ namespace EstructuraDeDatos
             actual = null;
         }
 
+        public Cola Clone()
+        {
+            Cola newList = new Cola();
+            Nodo actualList = primero;
+            while (actualList != null)
+            {
+                newList.push(actualList.getValor());
+                actualList = actualList.getEnlaceSiguiente();
+            }
+            return newList;
+        }
+
         public void push(Object valor)
         {
             Nodo nodo = new Nodo(valor);
@@ -214,6 +238,18 @@ namespace EstructuraDeDatos
         public Pila()
         {
             primero = null;
+        }
+
+        public Pila Clone()
+        {
+            Pila newList = new Pila();
+            Nodo actualList = primero;
+            while (actualList != null)
+            {
+                newList.push(actualList.getValor());
+                actualList = actualList.getEnlaceSiguiente();
+            }
+            return newList;
         }
 
         public Object pop()
