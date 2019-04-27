@@ -59,7 +59,14 @@ namespace ProyectoNetflix
                     {
                         movieName = movieName.Substring(0, 33) + "...";
                     }
-                    tvForChildren += "<div class='item'><a href='Views/Title.aspx?name=" + movieName + "&category=" + movie.Category  + "&boton=0'><img src='" + movie.Picture + "' width='280' height='150' /></a><span title='"+ movie.Name + "'><center><b>"+ movieName + "</b></center></span></div>";
+                    String search = "";
+                    if (Request.QueryString["search"] != null)
+                    {
+                        search = Request.QueryString["search"].ToLower();
+                    }
+                    if (search == "" || (search != "" && movieName.ToLower().Contains(search))) {
+                        tvForChildren += "<div class='item'><a href='Views/Title.aspx?name=" + movieName + "&category=" + movie.Category + "&boton=0'><img src='" + movie.Picture + "' width='280' height='150' /></a><span title='" + movie.Name + "'><center><b>" + movieName + "</b></center></span></div>";
+                    }
                 } else if (movie.Category == "Drama")
                 {
                     String movieName = movie.Name;
@@ -67,7 +74,15 @@ namespace ProyectoNetflix
                     {
                         movieName = movieName.Substring(0, 33) + "...";
                     }
-                    drama += "<div class='item'><a href='Views/Title.aspx?name=" + movieName + "&category=" + movie.Category + "&boton=0'><img src='" + movie.Picture + "' width='280' height='150' /></a><span title='" + movie.Name + "'><center><b>" + movieName + "</b></center></span></div>";
+                    String search = "";
+                    if (Request.QueryString["search"] != null)
+                    {
+                        search = Request.QueryString["search"].ToLower();
+                    }
+                    if (search == "" || (search != "" && movieName.ToLower().Contains(search)))
+                    {
+                        drama += "<div class='item'><a href='Views/Title.aspx?name=" + movieName + "&category=" + movie.Category + "&boton=0'><img src='" + movie.Picture + "' width='280' height='150' /></a><span title='" + movie.Name + "'><center><b>" + movieName + "</b></center></span></div>";
+                    }
                 } else if (movie.Category == "Acción y Aventura")
                 {
                     String movieName = movie.Name;
@@ -75,7 +90,15 @@ namespace ProyectoNetflix
                     {
                         movieName = movieName.Substring(0, 33) + "...";
                     }
-                    actionNAdventure += "<div class='item'><a href='Views/Title.aspx?name=" + movieName + "&category=" + movie.Category + "&boton=0'><img src='" + movie.Picture + "' width='280' height='150' /></a><span title='" + movie.Name + "'><center><b>" + movieName + "</b></center></span></div>";
+                    String search = "";
+                    if (Request.QueryString["search"] != null)
+                    {
+                        search = Request.QueryString["search"].ToLower();
+                    }
+                    if (search == "" || (search != "" && movieName.ToLower().Contains(search)))
+                    {
+                        actionNAdventure += "<div class='item'><a href='Views/Title.aspx?name=" + movieName + "&category=" + movie.Category + "&boton=0'><img src='" + movie.Picture + "' width='280' height='150' /></a><span title='" + movie.Name + "'><center><b>" + movieName + "</b></center></span></div>";
+                    }
                 }
                 movies.next();
             }
@@ -93,7 +116,15 @@ namespace ProyectoNetflix
                     {
                         movieName = movieName.Substring(0, 33) + "...";
                     }
-                    strWatchLater += "<div class='item'><a href='Views/Title.aspx?name=" + movieName + "&category=" + movie.Category + "&boton=0'><img src='" + movie.Picture + "' width='280' height='150' /></a><span title='" + movie.Name + "'><center><b>" + movieName + "</b></center></span></div>";
+                    String search = "";
+                    if (Request.QueryString["search"] != null)
+                    {
+                        search = Request.QueryString["search"].ToLower();
+                    }
+                    if (search == "" || (search != "" && movieName.ToLower().Contains(search)))
+                    {
+                        strWatchLater += "<div class='item'><a href='Views/Title.aspx?name=" + movieName + "&category=" + movie.Category + "&boton=0'><img src='" + movie.Picture + "' width='280' height='150' /></a><span title='" + movie.Name + "'><center><b>" + movieName + "</b></center></span></div>";
+                    }
                     watchLaterMovies.pop();
                 }
             }
@@ -116,7 +147,15 @@ namespace ProyectoNetflix
                     {
                         movieName = movieName.Substring(0, 33) + "...";
                     }
-                    strMyList += "<div class='item'><a href='Views/Title.aspx?name=" + movieName + "&category=" + movie.Category + "'&boton=0><img src='" + movie.Picture + "' width='280' height='150' /></a><span title='" + movie.Name + "'><center><b>" + movieName + "</b></center></span></div>";
+                    String search = "";
+                    if (Request.QueryString["search"] != null)
+                    {
+                        search = Request.QueryString["search"].ToLower();
+                    }
+                    if (search == "" || (search != "" && movieName.ToLower().Contains(search)))
+                    {
+                        strMyList += "<div class='item'><a href='Views/Title.aspx?name=" + movieName + "&category=" + movie.Category + "'&boton=0><img src='" + movie.Picture + "' width='280' height='150' /></a><span title='" + movie.Name + "'><center><b>" + movieName + "</b></center></span></div>";
+                    }
                     myListMovies.pop();
                 }
             }

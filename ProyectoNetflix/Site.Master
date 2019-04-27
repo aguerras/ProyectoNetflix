@@ -15,6 +15,86 @@
     <webopt:bundlereference runat="server" path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 
+    <style>
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            margin-top: -22px;
+            color: white;
+            font-weight: bold;
+            font-size: 28px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+        }
+        .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+        .prev:hover, .next:hover {
+            background-color: rgba(0,0,0,0.8);
+        }
+        .left-element {
+            display: inline-block;
+            position: absolute;
+            left: 0;
+	        z-index:100;
+        }
+        .right-element {
+            display: inline-block;
+            position: absolute;
+            right: 0px;
+	        z-index:100;
+        }
+
+        .owl-item img {
+            width: 280px !important;
+            margin: 0 auto;
+        }
+
+        .container-1{
+            position: relative;
+        }
+
+        input#search{
+            width: 300px;
+            height: 40px;
+            background: #2b303b;
+            border: none;
+            font-size: 10pt;
+            float: left;
+            color: #a5acb3;
+            padding-left: 45px;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            border-radius: 5px;
+        }
+        .container-1 input#search::-webkit-input-placeholder {
+           color: #65737e;
+        }
+ 
+        .container-1 input#search:-moz-placeholder { /* Firefox 18- */
+           color: #65737e;  
+        }
+ 
+        .container-1 input#search::-moz-placeholder {  /* Firefox 19+ */
+           color: #65737e;  
+        }
+ 
+        .container-1 input#search:-ms-input-placeholder {  
+           color: #65737e;  
+        }
+        .icon{
+            position: absolute;
+            top: 50%;
+            margin-left: 15px;
+            margin-top: 12px;
+            z-index: 1;
+            color: #4f5b66;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -22,21 +102,23 @@
             <a id="logo" href="/"><img src="https://github.com/carlosavilae/Netflix-Clone/blob/master/img/logo.PNG?raw=true" alt="Logo Image"></a>
         </div>      
         <nav class="main-nav">                
-            <a href="/">Home</a>
-        </nav>
-        <nav class="sub-nav">                
-            <a href="/Views/myList.aspx">myList</a>
+            <a href="/">Inicio</a>
+            <a href="/Views/myList.aspx">Mi lista</a>
         </nav>
         <nav class="sub-nav">
-            <a href="#"><i class="fas fa-search sub-nav-logo"></i></a>
-            <a href="#"><i class="fas fa-bell sub-nav-logo"></i></a>
+            <div class="container-1">
+                <span class="icon"><i class="fa fa-search"></i></span>
+                <form id="formSearch" method="get" action="/Default.aspx">
+                    <input type="search" id="search" name="search" placeholder="Buscar..." />
+                </form>
+            </div>
         </nav>
         <%--CSS--%>
-        <link id="css1" runat="server" href="../css/style.css" rel="stylesheet" type="text/css" />
-        <link id="css2" runat="server" href="../css/owl.carousel.min.css" rel="stylesheet" type="text/css" />
-        <link id="css3" runat="server" href="../css/owl.theme.default.min.css" rel="stylesheet" type="text/css" />
-        <link id="css4" runat="server" href="../css/title.css" rel="stylesheet" type="text/css" />
-        <link id="css5" runat="server" href="../css/MyList.css" rel="stylesheet" type="text/css" />
+        <link id="css1" runat="server" href="/css/style.css" rel="stylesheet" type="text/css" />
+        <link id="css2" runat="server" href="/css/owl.carousel.min.css" rel="stylesheet" type="text/css" />
+        <link id="css3" runat="server" href="/css/owl.theme.default.min.css" rel="stylesheet" type="text/css" />
+        <link id="css4" runat="server" href="/css/title.css" rel="stylesheet" type="text/css" />
+        <link id="css5" runat="server" href="/css/MyList.css" rel="stylesheet" type="text/css" />
         <%--CSS--%>
     </header>
 
@@ -61,7 +143,7 @@
 
         
 
-        <script src="Scripts/owl.carousel.min.js"></script>
+        <script src="/Scripts/owl.carousel.min.js"></script>
         
         <section class="main-container" >
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
@@ -70,6 +152,32 @@
 
         <footer></footer>
 
+        <script>
+
+            $(document).ready(function () {
+                var owl = $(".owl-carousel");
+                owl.owlCarousel({
+                    loop: false,
+                    margin: 10,
+                    nav: false,
+                    dots: false,
+                    autoWidth: true,
+                    autoHeight: true
+                });
+
+                function next_slide() {
+                    owl.trigger('next.owl');
+                    owl.trigger('next.owl');
+                }
+		        function prev_slide(){
+		            owl.trigger('prev.owl'); 
+		            owl.trigger('prev.owl'); 
+                }
+
+                document.getElementsByClassName("next")[0].addEventListener("click", next_slide, false);
+		        document.getElementsByClassName("prev")[0].addEventListener("click", prev_slide, false);
+            });
+        </script>
     </form>
 </body>
 </html>

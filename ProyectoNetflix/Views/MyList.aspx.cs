@@ -28,7 +28,7 @@ namespace ProyectoNetflix.Views
                     {
                         movieName = movieName.Substring(0, 33) + "...";
                     }
-                    peliculas += "<div class='tile'><a href='Title.aspx?name=" + movieName + "&category=" + movie.Category + "&boton=1'><div class='tile__media'><img class='tile__img' src='../" + movie.Picture + "' alt=''  /></div><div class='tile__details'><div class='tile__title'>" + movieName + "</div></div></a></div>";
+                    peliculas += "<div class='item'><a href='Title.aspx?name=" + movieName + "&category=" + movie.Category + "&boton=0'><img src='../" + movie.Picture + "' width='280' height='150' /></a><span title='" + movie.Name + "'><center><b>" + movieName + "</b></center></span></div>";
                     myListMovies.pop();
                 }
             }
