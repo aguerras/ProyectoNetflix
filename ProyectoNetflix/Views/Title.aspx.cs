@@ -224,6 +224,7 @@ namespace ProyectoNetflix.Views
             {
                 delete_movie_in_watchLater(movie);
             }
+            Response.Redirect("/");
         }
     }
 }
