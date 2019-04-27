@@ -15,6 +15,7 @@ namespace ProyectoNetflix.Views
         public Pila watchLater = new Pila();
         public Cola myList = new Cola();
         public Boolean isInMyList = false;
+        public Boolean isInWatchLater = false;
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -33,6 +34,17 @@ namespace ProyectoNetflix.Views
                         if (boton == "1")
                         {
                             delete_movie_in_myList(movie);
+                        } else if (boton == "2")
+                        {
+                            delete_movie_in_watchLater(movie);
+                        }
+                    }
+
+                    if (isInWatchLater)
+                    {
+                        if (boton == "2")
+                        {
+                            delete_movie_in_watchLater(movie);
                         }
                     }
                     lbl_category.Text = movie.Category;
@@ -75,6 +87,25 @@ namespace ProyectoNetflix.Views
                         if (name == currentName)
                         {
                             isInMyList = true;
+                            break;
+                        }
+                    }
+                }
+                catch (Exception)
+                {
+
+                }
+                //Colocar si existe en ver mas tarde
+                try
+                {
+                    Pila watchLaterList = watchLater.Clone();
+                    while (watchLaterList.getPrimero() != null)
+                    {
+                        Movie primero = (Movie)watchLaterList.pop();
+                        String currentName = primero.Name;
+                        if (name == currentName)
+                        {
+                            isInWatchLater = true;
                             break;
                         }
                     }
@@ -150,6 +181,49 @@ namespace ProyectoNetflix.Views
             }
             isInMyList = false;
             Session["myList"] = myList2;
+        }
+
+        protected void delete_movie_in_watchLater(Movie movie)
+        {
+            Pila watchLaterList = new Pila();
+            try
+            {
+                while (watchLater.getPrimero() != null)
+                {
+                    Movie primero = (Movie)watchLater.pop();
+                    String currentName = primero.Name;
+                    String movieName = movie.Name;
+                    if (movieName != currentName)
+                    {
+                        watchLaterList.push(primero);
+                    }
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+            isInWatchLater = false;
+            Session["watchLater"] = watchLaterList;
+        }
+
+        protected void btn_add_watchLater(object sender, EventArgs e)
+        {
+            Movie movie = getMovieActual();
+            if (movie != null && !isInWatchLater)
+            {
+                if (watchLater == null)
+                {
+                    watchLater = new Pila();
+                }
+                watchLater.push(movies.getActual());
+                isInWatchLater = true;
+                Session["watchLater"] = watchLater;
+            }
+            else
+            {
+                delete_movie_in_watchLater(movie);
+            }
         }
     }
 }

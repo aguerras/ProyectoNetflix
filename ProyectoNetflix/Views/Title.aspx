@@ -11,6 +11,10 @@
                         <% } %>
                         <asp:Button id="btn_add" Text="Mi lista" runat="server" OnClick="btn_add_Click" />
                     </div>
+                    <div class="my-list">
+                        <i class="fas fa-download"></i>
+                        <asp:Button id="btn_add2" Text="Ver despues" runat="server" OnClick="btn_add_watchLater" />
+                    </div>
                 </div>
                 <div class="header-right">
                     <h1><asp:Label id="lbl_title" Text="" runat="server" /></h1>

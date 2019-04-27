@@ -123,7 +123,7 @@ namespace ProyectoNetflix
                     }
                     if (search == "" || (search != "" && movieName.ToLower().Contains(search)))
                     {
-                        strWatchLater += "<div class='item'><a href='Views/Title.aspx?name=" + movieName + "&category=" + movie.Category + "&boton=0'><img src='" + movie.Picture + "' width='280' height='150' /></a><span title='" + movie.Name + "'><center><b>" + movieName + "</b></center></span></div>";
+                        strWatchLater += "<div class='item'><a href='Views/Title.aspx?name=" + movieName + "&category=" + movie.Category + "&boton=2'><img src='" + movie.Picture + "' width='280' height='150' /></a><span title='" + movie.Name + "'><center><b>" + movieName + "</b></center></span></div>";
                     }
                     watchLaterMovies.pop();
                 }
